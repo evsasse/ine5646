@@ -50,27 +50,32 @@ public class ServletVerificador extends HttpServlet {
     final String COR_ERRO_NAO_EH_HUMERO = "red";
     StringBuilder sb = new StringBuilder("");
     String cor = COR_ERRO_NAO_EH_HUMERO;
-    String msg = "[substituir pela mensagem apropriada]";
-
-    //FIXME implementar
-    for(int i = 2; i < 999; i++){
-        if(ehPrimo(i)){
-            sb.append("<h2 style='color : ").append(COR_PRIMO).append("'>").append(i).append(" : ").append("</h2>");
-        }else{
-            sb.append("<h2 style='color : ").append(COR_NAO_PRIMO).append("'>").append(i).append(" : ").append("</h2>");
-        }
-//        sb.append("<h2 style='color : ").append(cor).append("'>").append(numero).append(" : ").append(msg).append("</h2>");
+    String msg = "";
+    
+    try {
+      int integer = Integer.parseInt(numero);
+      if (integer < 2) {
+        msg = "Nao eh possivel testar a primalidade deste numero";
+      } else if (ehPrimo(integer)) {
+        msg = "Eh primo";
+        cor = COR_PRIMO;
+      } else {
+        msg = "Nao eh primo";
+        cor = COR_NAO_PRIMO;
+      }
+    } catch (NumberFormatException e) {
+        msg = "Nao eh um numero";
     }
   
-    return sb.toString();
+    return sb.append("<h2 style='color : ").append(cor).append("'>").append(numero).append(" : ").append(msg).append("</h2>").toString();
   }
 
   // retorna true se num for primo ou false caso contrário.
   private boolean ehPrimo(long num) {
-    if(num > 2 && num%2 == 0) return false;
+    if (num > 2 && num%2 == 0) return false;
     
-    for(int i = 3; i*i < num; i += 2){
-        if(num%i == 0) return false;
+    for (int i = 3; i*i <= num; i += 2) {
+        if (num%i == 0) return false;
     }
       
     return true;
