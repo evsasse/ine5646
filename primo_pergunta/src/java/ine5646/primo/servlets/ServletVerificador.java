@@ -55,9 +55,9 @@ public class ServletVerificador extends HttpServlet {
     //FIXME implementar
     for(int i = 2; i < 999; i++){
         if(ehPrimo(i)){
-            sb.append("<h2 style='color : ").append(COR_PRIMO).append("'>").append(numero).append(" : ").append("</h2>");
+            sb.append("<h2 style='color : ").append(COR_PRIMO).append("'>").append(i).append(" : ").append("</h2>");
         }else{
-            sb.append("<h2 style='color : ").append(COR_NAO_PRIMO).append("'>").append(numero).append(" : ").append("</h2>");
+            sb.append("<h2 style='color : ").append(COR_NAO_PRIMO).append("'>").append(i).append(" : ").append("</h2>");
         }
 //        sb.append("<h2 style='color : ").append(cor).append("'>").append(numero).append(" : ").append(msg).append("</h2>");
     }
