@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author leandro
+ * @author leandro; evandro sasse
  */
 @WebServlet(name = "ServletVerificador", urlPatterns = {"/verifique"})
 public class ServletVerificador extends HttpServlet {
@@ -53,13 +53,26 @@ public class ServletVerificador extends HttpServlet {
     String msg = "[substituir pela mensagem apropriada]";
 
     //FIXME implementar
+    for(int i = 2; i < 999; i++){
+        if(ehPrimo(i)){
+            sb.append("<h2 style='color : ").append(COR_PRIMO).append("'>").append(numero).append(" : ").append("</h2>");
+        }else{
+            sb.append("<h2 style='color : ").append(COR_NAO_PRIMO).append("'>").append(numero).append(" : ").append("</h2>");
+        }
+//        sb.append("<h2 style='color : ").append(cor).append("'>").append(numero).append(" : ").append(msg).append("</h2>");
+    }
   
-    return sb.append("<h2 style='color : ").append(cor).append("'>").append(numero).append(" : ").append(msg).append("</h2>").toString();
+    return sb.toString();
   }
 
   // retorna true se num for primo ou false caso contrário.
   private boolean ehPrimo(long num) {
-    //FIXME implementar
-    return false;
+    if(num > 2 && num%2 == 0) return false;
+    
+    for(int i = 3; i*i < num; i += 2){
+        if(num%i == 0) return false;
+    }
+      
+    return true;
   }
 }
