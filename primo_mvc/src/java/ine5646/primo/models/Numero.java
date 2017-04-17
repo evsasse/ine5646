@@ -21,6 +21,7 @@ public class Numero {
     }
     
     public boolean ehPrimo() {
+        if (num < 2) return false;
         if (num > 2 && num%2 == 0) return false;
 
         for (int i = 3; i*i <= num; i += 2) {
