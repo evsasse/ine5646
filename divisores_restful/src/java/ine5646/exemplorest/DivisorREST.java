@@ -27,10 +27,21 @@ public class DivisorREST {
       List<Integer> listaDivisores;
       listaDivisores = new ArrayList<>();
       
-      for(int i = 1; i <= numero; i++){
+      listaDivisores.add(1);
+      
+      int loopUntil = (int) Math.sqrt(numero);
+      for(int i = 2; i <= loopUntil; i++){
           if(numero % i == 0){
               listaDivisores.add(i);
+              int inverse = numero/i;
+              if(inverse != i){
+                listaDivisores.add(inverse);
+              }
           }
+      }
+      
+      if(numero != 1){
+        listaDivisores.add(numero);
       }
   
      return new Gson().toJson(listaDivisores);
